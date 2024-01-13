@@ -4,7 +4,9 @@ In this project, I aim to conduct a comparison of various image classification m
 
 ## Result
 
-The analysis concludes that the Convolutional Neural Network (CNN) is well suit for image classification tasks, achieving an impressive 98.8% accuracy. Closely following is the SVM Radial Basis Function (RBF), which attained 98.7% accuracy. Other examined models also performed admirably, accuracy rate for these are all above 95%.
+The analysis concludes that the Convolutional Neural Network (CNN) is well suit for image classification tasks, achieving an impressive 99% accuracy. Closely following is the SVM Radial Basis Function (RBF), which attained 98.7% accuracy. Other examined models also performed admirably, accuracy rate for these are all above 95%.
+
+## Setup
 
 
 ```python
@@ -58,7 +60,13 @@ import plotly.graph_objects as go
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler
+import tensorflow as tf
 import umap
+
+random.seed(42)
+np.random.seed(42)
+tf.random.set_seed(42)
+
 ```
 
 
@@ -115,7 +123,7 @@ plt.show()
 
 
     
-![png](README_files/README_10_0.png)
+![png](README_files/README_11_0.png)
     
 
 
@@ -157,7 +165,7 @@ plt.show()
 
 
     
-![png](README_files/README_13_0.png)
+![png](README_files/README_14_0.png)
     
 
 
@@ -196,7 +204,7 @@ plt.show()
 
 
     
-![png](README_files/README_16_0.png)
+![png](README_files/README_17_0.png)
     
 
 
@@ -216,7 +224,7 @@ plt.show()
 
 
     
-![png](README_files/README_17_0.png)
+![png](README_files/README_18_0.png)
     
 
 
@@ -246,7 +254,7 @@ plt.show()
 
 
     
-![png](README_files/README_19_0.png)
+![png](README_files/README_20_0.png)
     
 
 
@@ -287,7 +295,7 @@ ImageDisplay(fig.to_image(format="png"))
 
 
     
-![png](README_files/README_23_0.png)
+![png](README_files/README_24_0.png)
     
 
 
@@ -325,7 +333,7 @@ ImageDisplay(fig.to_image(format="png"))
 
 
     
-![png](README_files/README_26_0.png)
+![png](README_files/README_27_0.png)
     
 
 
@@ -362,7 +370,7 @@ ImageDisplay(fig.to_image(format="png"))
 
 
     
-![png](README_files/README_29_0.png)
+![png](README_files/README_30_0.png)
     
 
 
@@ -480,7 +488,7 @@ hyperparameter_tuning(RandomForestClassifier, param_grid)
 
 
 
-    ({'model__max_depth': None, 'model__n_estimators': 150}, 0.9567)
+    ({'model__max_depth': 100, 'model__n_estimators': 150}, 0.9549)
 
 
 
@@ -606,9 +614,9 @@ hyperparameter_tuning(NeuralNetworkClassifier, param_grid, "NeuralNetwork")
 
     ({'model__batch_size': 64,
       'model__lam': 0.001,
-      'model__layers': (64, 32),
+      'model__layers': (64, 32, 32),
       'model__output_size': 10},
-     0.9773)
+     0.9757)
 
 
 
@@ -648,7 +656,7 @@ accuracy
 
 
 
-    0.9876999855041504
+    0.9901999831199646
 
 
 
@@ -687,7 +695,7 @@ plt.show()
 
 
     
-![png](README_files/README_43_0.png)
+![png](README_files/README_44_0.png)
     
 
 
@@ -700,22 +708,22 @@ print(df)
 ```
 
                        method  accuracy  accuracy_train  time_train  time_predict  \
-    6                     CNN    0.9877        0.997683  563.943963     23.446228   
-    2                 SVC RBF    0.9870        0.997733   54.702107     88.910634   
-    3          SVC polynomial    0.9833        0.997817   77.075998     55.578312   
-    5           NeuralNetwork    0.9773        0.984367   96.884197      6.411389   
-    1    KNeighborsClassifier    0.9755        1.000000   21.029321     38.236061   
-    4           XGBClassifier    0.9671        0.999983   69.311949      2.353380   
-    0  RandomForestClassifier    0.9567        1.000000  136.787052      4.838271   
+    6                     CNN    0.9902        0.997967  503.499187     23.327366   
+    2                 SVC RBF    0.9870        0.997733   56.862112     86.249022   
+    3          SVC polynomial    0.9833        0.997817   68.663158     52.632367   
+    5           NeuralNetwork    0.9757        0.983700   60.856029      7.101779   
+    1    KNeighborsClassifier    0.9755        1.000000   15.463386     33.665483   
+    4           XGBClassifier    0.9671        0.999983   69.973087      2.326386   
+    0  RandomForestClassifier    0.9549        1.000000  136.425343      3.598989   
     
        time_total  
-    6  587.390191  
-    2  143.612742  
-    3  132.654310  
-    5  103.295586  
-    1   59.265382  
-    4   71.665328  
-    0  141.625323  
+    6  526.826553  
+    2  143.111135  
+    3  121.295526  
+    5   67.957808  
+    1   49.128869  
+    4   72.299473  
+    0  140.024332  
 
 
 
@@ -757,7 +765,7 @@ ImageDisplay(fig.to_image(format="png"))
 
 
     
-![png](README_files/README_48_0.png)
+![png](README_files/README_49_0.png)
     
 
 
@@ -796,22 +804,19 @@ ImageDisplay(fig.to_image(format="png"))
 
 
     
-![png](README_files/README_51_0.png)
+![png](README_files/README_52_0.png)
     
 
 
 
 
 ```python
-!rm -rf /README_files
-!rm -rf /README_files.md
-!rm /README_files.zip
+# !rm -rf /README_files
+# !rm -rf /README_files.md
+# !rm /README_files.zip
 # !jupyter nbconvert --to markdown "/classification.ipynb" --output README.md
 # !zip -r /README_files.zip /README_files
 ```
-
-    rm: cannot remove '/README_files.zip': No such file or directory
-
 
 
 ```python
